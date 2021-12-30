@@ -10,22 +10,43 @@ Original file is located at
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         n=len(s)
-        cols=0
-        while n>0:
-            n=n-numRows
-            cols=cols+1
-            if numRows>=3:
-                for i in range(0,numRows-2):
-                    if n>=1: 
-                        n=n-1
-                        cols=cols+1
-            else:
-                continue
-        array=[[0 for col in range(cols)] for row in range(numRows)]
-        R=0
-        C=0
-        K=0
+        cols=1000
+        #while n>0:
+        #    n=n-numRows
+        #    cols=cols+1
+        #    if numRows>=3:
+        #        for i in range(0,numRows-2):
+        #            if n>=1: 
+        #                n=n-1
+        #                cols=cols+1
+        #    else:
+        #        continue
         
+
+        array=[[0 for col in range(cols)] for row in range(numRows)]
+        X=0
+        Y=0
+        t=0
+        dx=[1,-1,0]
+        dy=[0,1,1]
+        for i in range(n):
+            array[X][Y]=s[i]
+            if X+dx[t]>=numRows:
+                t=1
+            if X+dx[t]<0:
+                t=0
+            if numRows==1:
+                t=2
+            X=X+dx[t]
+            Y=Y+dy[t]
+            print(Y)
+        result=""
+        for i in array:
+            for j in i:
+                if j!=0:
+                    result+=j
+        return result
+      ########################수정전코드 빠르기는 수정전 코드가 빠르다 열을 최대로 잡아버려서 그런듯
         for i in range(len(s)):
             if numRows==1:
                 array[R][C]=s[i]
@@ -57,5 +78,36 @@ class Solution:
 
 
 
+s="A"
+numRows=1
+n=len(s)
 
+cols=1000
+
+array=[[0 for col in range(cols)] for row in range(numRows)]
+X=0
+Y=0
+t=0
+dx=[1,-1,0]
+dy=[0,1,1]
+print(array)
+
+for i in range(n):
+          array[X][Y]=s[i]
+          if X>=numRows-1:
+            t=1
+          if X<=0:
+            t=0
+          if numRows==0:
+            t=2
+          X=X+dx[t]
+          Y=Y+dy[t]  
+          print(Y)
+
+result=""
+for i in array:
+            for j in i:
+                if j!=0:
+                    result+=j
+print(result)
 

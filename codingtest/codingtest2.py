@@ -10,12 +10,36 @@ Original file is located at
 n=6
 def generateMatrix( n:int):
   all=n*n
-  row=0
-  col=0
+  X=0
+  Y=0
   repeat=n
   array=[[0 for c in range(n)] for r in range(n)]
-  print(array)
   x=1 ##반복횟수
+  
+  dx=[0,1,0,-1]
+  dy=[1,0-1,0]
+
+start=1
+i=0##방향
+while start<=all+1:
+  array[X][Y]=start
+  start=start+1
+  
+  if X+dx[i]>=n or Y+dy[i]>=n or Y+dy[i]<0 or array[X+dx[i]][y+dy[i]]!=0:
+    i=i+1
+    if i==4:
+      i=0
+  
+  X=X+dx[i]
+  Y=Y+dy[i]
+  
+####재귀로도 구현 가능 ? n이짝수일때 홀수일때 구별해야할듯?
+
+
+  
+  
+  
+  #########수정전 코드
   while x<=all:
     for j in range(repeat):
       array[row][col]=x
@@ -109,4 +133,9 @@ class Solution:
         return array
 
 5*5
+
+n=6
+array=[[0 for c in range(n)] for r in range(n)]
+array[1][0]=1
+array
 
