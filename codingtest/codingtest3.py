@@ -9,14 +9,50 @@ Original file is located at
 
 from collections import deque
 
+#####수정후 코드
+######회전
+def rotation(x,queue):
+  if x ==-1:##반시계
+    a=queue.popleft()
+    queue.append(a)
+  if x==1:##시계
+    a=queue.pop()
+    queue.appendleft(a)
+  return 0
+
+##바뀐기어 또 안바꾸게 종료
+def confirm(qlist):##다르면 1, 같으면 0
+ 
+  
+  return conlist
+
+def gear(dir,queuenum):
+  print("기어작동",queuenum)
+  if queuenum<0 or queuenum>3:
+    return
+  if check[queuenum] ==1:
+    print("체크")
+    return
+  check[queuenum]=1
+  rotation(dir,qlist[queuenum])
+  
+  if queuenum != 0:
+    if conlist[queuenum][6]!=conlist[queuenum-1][2]:
+      gear(-dir,queuenum-1)
+
+  if queuenum != 3:
+    if conlist[queuenum][2]!=conlist[queuenum+1][6]:
+      print("다음기어")
+      gear(-dir,queuenum+1)
+      
+  return 0
+
 from collections import deque
+import copy
 s1=input()
 s2=input()
 s3=input()
 s4=input()
-
-int(input)
-
 s1=list(s1)
 s2=list(s2)
 s3=list(s3)
@@ -25,14 +61,35 @@ s1 = list(map(int, s1))
 s2 = list(map(int, s2))
 s3 = list(map(int, s3))
 s4 = list(map(int, s4))
-
 queue1=deque(s1)
 queue2=deque(s2)
 queue3=deque(s3)
 queue4=deque(s4)
-print(queue1)
+n=int(input())
+qlist=[queue1,queue2,queue3,queue4]
+conlist=copy.deepcopy(qlist)
+check=[0,0,0,0]
+qconfirm=[0,0,0]
+for _ in range(n):
+  num,dir=map(int,input().split())
+  gear(dir,num-1)
+  check=[0,0,0,0]
+  conlist=copy.deepcopy(qlist)
+  print(conlist)
+result=0
+if queue1[0]==1:
+  result=result+1
+if queue2[0]==1:
+  result=result+2
+if queue3[0]==1:
+  result=result+4
+if queue4[0]==1:
+  result=result+8
+print(result)
 
-
+#############################수정전 코드#######
+#############################수정전 코드#######
+#############################수정전 코드#######
 
 def confirm(queue1,queue2,queue3,queue4):##다르면 1, 같으면 0
   conlist=[0,0,0]
@@ -284,4 +341,122 @@ if queue3[0]==1:
 if queue4[0]==1:
   result=result+8
 print(result)
+
+######회전
+def rotation(x,queue):
+  if x ==-1:##반시계
+    a=queue.popleft()
+    queue.append(a)
+  if x==1:##시계
+    a=queue.pop()
+    queue.appendleft(a)
+  return 0
+
+##바뀐기어 또 안바꾸게 종료
+check=[0,0,0,0]
+def gear(dir,queuenum):
+  print(queuenum)
+  if check[queuenum] ==1:
+    return
+  check[queuenum]=1
+  if queuenum==0:
+    gear(-dir,queuenum+1)
+  elif queuenum==3:
+    gear(-dir,queuenum-1)
+  else:
+    gear(-dir,queuenum-1)
+    gear(-dir,queuenum+1)
+  rotation(dir,qlist[queuenum])
+  return 0
+
+######회전
+def rotation(x,queue):
+  if x ==-1:##반시계
+    a=queue.popleft()
+    queue.append(a)
+  if x==1:##시계
+    a=queue.pop()
+    queue.appendleft(a)
+  return 0
+
+##바뀐기어 또 안바꾸게 종료
+def confirm(qlist):##다르면 1, 같으면 0
+ 
+  
+  return conlist
+
+def gear(dir,queuenum):
+  print("기어작동",queuenum)
+  if queuenum<0 or queuenum>3:
+    return
+  if check[queuenum] ==1:
+    print("체크")
+    return
+  check[queuenum]=1
+  rotation(dir,qlist[queuenum])
+  
+  if queuenum != 0:
+    if conlist[queuenum][6]!=conlist[queuenum-1][2]:
+      gear(-dir,queuenum-1)
+
+  if queuenum != 3:
+    if conlist[queuenum][2]!=conlist[queuenum+1][6]:
+      print("다음기어")
+      gear(-dir,queuenum+1)
+      
+  return 0
+
+from collections import deque
+import copy
+s1=input()
+s2=input()
+s3=input()
+s4=input()
+s1=list(s1)
+s2=list(s2)
+s3=list(s3)
+s4=list(s4)
+s1 = list(map(int, s1))
+s2 = list(map(int, s2))
+s3 = list(map(int, s3))
+s4 = list(map(int, s4))
+queue1=deque(s1)
+queue2=deque(s2)
+queue3=deque(s3)
+queue4=deque(s4)
+n=int(input())
+qlist=[queue1,queue2,queue3,queue4]
+conlist=copy.deepcopy(qlist)
+check=[0,0,0,0]
+qconfirm=[0,0,0]
+for _ in range(n):
+  num,dir=map(int,input().split())
+  gear(dir,num-1)
+  check=[0,0,0,0]
+  conlist=copy.deepcopy(qlist)
+  print(conlist)
+result=0
+if queue1[0]==1:
+  result=result+1
+if queue2[0]==1:
+  result=result+2
+if queue3[0]==1:
+  result=result+4
+if queue4[0]==1:
+  result=result+8
+print(result)
+
+qlist
+
+qlist[2]
+qlist[1][1]
+
+conlist=qlist[:]
+qlist[1][1]=0
+print(qlist[1][1])
+print(conlist[1][1])
+
+id(qlist[1][1])
+
+id(conlist[1][1])
 
